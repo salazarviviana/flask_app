@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import weather
+import os
 
 app = Flask(__name__)
 
@@ -19,7 +20,9 @@ def about():   #name of the function to call the page about in html
     return render_template('about.html')	#calls the html file	
 
 if __name__ == "__main__":
-    app.run()
+    #app.run()  #when wokring on a local port
+    port = int(os.environ.get("PORT", 5000))  #when deploying it to Heroku
+    app.run(host="0.0.0.0", port=port)
 
 
 # result:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
